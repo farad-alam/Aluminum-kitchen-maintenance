@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { PhoneCall, ShieldCheck, Wrench, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/Button"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
 
 export function HeroSection() {
   const tHero = useTranslations("Hero")
@@ -14,21 +16,42 @@ export function HeroSection() {
   const whatsappUrl = "https://wa.me/966500892742"
   const phoneUrl = "tel:+966500892742"
 
+  const images = [
+    "/images/hero_kitchen.png",
+    "/images/hero_kitchen_2.png",
+    "/images/hero_kitchen_3.png",
+    "/images/hero_kitchen_4.png",
+    "/images/hero_kitchen_5.png",
+  ]
+
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true, watchDrag: false },
+    [Autoplay({ delay: 5000 })]
+  )
+
   return (
     <section className="relative w-full overflow-hidden bg-(--color-brand-surface) py-20 lg:py-32">
-      {/* Background with glassmorphism overlay */}
+      {/* Background Slider with glassmorphism overlay */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/hero_kitchen.png"
-          alt="Luxury Aluminum Kitchen"
-          fill
-          className="object-cover object-center opacity-90"
-          priority
-        />
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
+        <div className="h-full w-full overflow-hidden" ref={emblaRef}>
+          <div className="flex h-full">
+            {images.map((src, index) => (
+              <div key={index} className="relative min-w-0 flex-[0_0_100%] h-full">
+                <Image
+                  src={src}
+                  alt={`Luxury Aluminum Kitchen ${index + 1}`}
+                  fill
+                  className="object-cover object-center opacity-90"
+                  priority={index === 0}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm pointer-events-none" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4 md:px-6">
+      <div className="container relative z-10 mx-auto px-4 md:px-6 pointer-events-none">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-8 items-center">
           
           {/* Text Content */}
@@ -36,7 +59,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-6 pointer-events-auto"
           >
             <div className="inline-flex w-fit items-center rounded-full bg-(--color-brand-gold-pale) px-3 py-1 text-sm font-medium text-(--color-brand-gold)">
               <ShieldCheck className="mr-2 h-4 w-4 rtl:ml-2 rtl:mr-0" />
@@ -58,7 +81,7 @@ export function HeroSection() {
                 </Button>
               </a>
               <a href={phoneUrl}>
-                <Button size="lg" variant="outline" className="w-full sm:w-auto text-base gap-2">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto text-base gap-2 bg-white">
                   <PhoneCall className="h-5 w-5" />
                   {tCTA("call")}
                 </Button>
