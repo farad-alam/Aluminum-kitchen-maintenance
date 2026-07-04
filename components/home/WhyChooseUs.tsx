@@ -34,11 +34,11 @@ export function WhyChooseUs() {
           </p>
         </div>
 
-        {/* Central Organic Layout */}
-        <div className="relative w-full flex flex-col lg:flex-row items-center justify-between flex-1 gap-8 py-4 lg:py-8 min-h-0">
+        {/* Central Organic Layout with Grid Overlay */}
+        <div className="relative w-full flex flex-col items-center justify-center flex-1 py-4 lg:py-8 min-h-0">
           
           {/* Center Organic Background Image (Absolute) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[60%] lg:w-[75%] lg:h-[100%] z-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[70%] lg:w-[85%] lg:h-[110%] z-0 pointer-events-none">
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -57,79 +57,27 @@ export function WhyChooseUs() {
             </motion.div>
           </div>
 
-          {/* Left Cards */}
-          <div className="flex flex-col gap-6 lg:gap-8 relative z-10 w-full lg:w-1/2 items-center lg:items-start lg:pl-16">
-            {features.slice(0, 3).map((feature, index) => {
+          {/* 3-Column Grid for Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 w-full relative z-10 lg:px-8 items-center justify-items-center">
+            {features.map((feature, index) => {
               const Icon = iconMap[index]
-              const translateClasses = [
-                "lg:translate-x-0",
-                "lg:translate-x-20",
-                "lg:translate-x-8"
-              ][index]
-              
-              const floatDuration = 4 + index * 0.5;
 
               return (
                 <motion.div
-                  key={`left-${index}`}
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  animate={{ y: [0, -12, 0] }}
-                  transition={{ 
-                    opacity: { duration: 0.5, delay: index * 0.1 },
-                    x: { duration: 0.5, delay: index * 0.1 },
-                    y: { repeat: Infinity, duration: floatDuration, ease: "easeInOut", delay: index * 0.2 }
-                  }}
-                  className={`bg-white/95 backdrop-blur-sm rounded-[1.5rem] lg:rounded-[2rem] p-4 lg:p-5 shadow-2xl shadow-black/10 flex flex-col items-center text-center w-full max-w-[240px] hover:!scale-105 transition-transform ${translateClasses}`}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white/95 backdrop-blur-sm rounded-[1.5rem] lg:rounded-[2rem] p-6 lg:p-8 shadow-2xl shadow-black/10 flex flex-col items-center text-center w-full max-w-[320px] hover:-translate-y-2 transition-transform duration-300"
                 >
-                  <div className="mb-3 inline-flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-full bg-gray-50 border border-gray-100">
-                    <Icon className="h-5 w-5 lg:h-6 lg:w-6 text-red-500" />
+                  <div className="mb-4 inline-flex h-14 w-14 lg:h-16 lg:w-16 items-center justify-center rounded-full bg-gray-50 border border-gray-100 shadow-sm">
+                    <Icon className="h-6 w-6 lg:h-7 lg:w-7 text-red-500" />
                   </div>
-                  <h3 className="mb-1.5 text-[14px] lg:text-[15px] font-bold text-(--color-brand-navy)">
+                  <h3 className="mb-2 text-[16px] lg:text-[18px] font-bold text-(--color-brand-navy)">
                     {feature.title}
                   </h3>
-                  <p className="text-[11px] lg:text-xs text-(--color-brand-muted) font-medium leading-relaxed">
-                    {feature.desc}
-                  </p>
-                </motion.div>
-              )
-            })}
-          </div>
-
-          {/* Right Cards */}
-          <div className="flex flex-col gap-6 lg:gap-8 relative z-10 w-full lg:w-1/2 items-center lg:items-end lg:pr-16">
-            {features.slice(3, 6).map((feature, index) => {
-              const Icon = iconMap[index + 3]
-              const translateClasses = [
-                "lg:-translate-x-0",
-                "lg:-translate-x-20",
-                "lg:-translate-x-8"
-              ][index]
-
-              const floatDuration = 4.5 + index * 0.5;
-
-              return (
-                <motion.div
-                  key={`right-${index}`}
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  animate={{ y: [0, -12, 0] }}
-                  transition={{ 
-                    opacity: { duration: 0.5, delay: index * 0.1 },
-                    x: { duration: 0.5, delay: index * 0.1 },
-                    y: { repeat: Infinity, duration: floatDuration, ease: "easeInOut", delay: index * 0.3 }
-                  }}
-                  className={`bg-white/95 backdrop-blur-sm rounded-[1.5rem] lg:rounded-[2rem] p-4 lg:p-5 shadow-2xl shadow-black/10 flex flex-col items-center text-center w-full max-w-[240px] hover:!scale-105 transition-transform ${translateClasses}`}
-                >
-                  <div className="mb-3 inline-flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-full bg-gray-50 border border-gray-100">
-                    <Icon className="h-5 w-5 lg:h-6 lg:w-6 text-red-500" />
-                  </div>
-                  <h3 className="mb-1.5 text-[14px] lg:text-[15px] font-bold text-(--color-brand-navy)">
-                    {feature.title}
-                  </h3>
-                  <p className="text-[11px] lg:text-xs text-(--color-brand-muted) font-medium leading-relaxed">
+                  <p className="text-[13px] lg:text-sm text-(--color-brand-muted) font-medium leading-relaxed">
                     {feature.desc}
                   </p>
                 </motion.div>
