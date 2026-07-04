@@ -37,7 +37,7 @@ export function WhyChooseUs() {
       <div className="container mx-auto px-4 md:px-6 flex flex-col h-full justify-center max-w-7xl relative z-10">
         
         {/* Header split layout */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 lg:gap-8 mb-8 lg:mb-10 w-full relative z-20">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 lg:gap-8 mb-8 lg:mb-10 w-full relative z-20 pt-12 lg:pt-20">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-(--color-brand-navy) max-w-xl leading-tight">
             {t("title")}
           </h2>
