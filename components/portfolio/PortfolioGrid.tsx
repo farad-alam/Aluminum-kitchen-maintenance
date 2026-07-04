@@ -38,10 +38,34 @@ export function PortfolioGrid({ locale }: { locale: string }) {
       image: '/images/kitchen_after_2.png',
       beforeImage: '/images/kitchen_before_2.png'
     },
-    { id: '3', title: isAr ? 'تركيب مطبخ فيلا' : 'Villa Kitchen Installation', category: 'installation', image: '/images/hero_kitchen_3.png' },
-    { id: '4', title: isAr ? 'تغيير ألوان المطبخ' : 'Kitchen Color Change', category: 'renovation', image: '/images/hero_kitchen_4.png' },
-    { id: '5', title: isAr ? 'تركيب مطبخ شقة' : 'Apartment Kitchen Installation', category: 'installation', image: '/images/hero_kitchen_5.png' },
-    { id: '6', title: isAr ? 'صيانة أدراج منزلقة' : 'Sliding Drawers Maintenance', category: 'maintenance', image: '/images/hero_kitchen.png' },
+    { 
+      id: '3', 
+      title: isAr ? 'تركيب مطبخ فيلا' : 'Villa Kitchen Installation', 
+      category: 'installation', 
+      image: '/images/hero_kitchen_3.png',
+      beforeImage: '/images/kitchen_before_1.png'
+    },
+    { 
+      id: '4', 
+      title: isAr ? 'تغيير ألوان المطبخ' : 'Kitchen Color Change', 
+      category: 'renovation', 
+      image: '/images/hero_kitchen_4.png',
+      beforeImage: '/images/kitchen_before_2.png'
+    },
+    { 
+      id: '5', 
+      title: isAr ? 'تركيب مطبخ شقة' : 'Apartment Kitchen Installation', 
+      category: 'installation', 
+      image: '/images/hero_kitchen_5.png',
+      beforeImage: '/images/kitchen_before_1.png'
+    },
+    { 
+      id: '6', 
+      title: isAr ? 'صيانة أدراج منزلقة' : 'Sliding Drawers Maintenance', 
+      category: 'maintenance', 
+      image: '/images/hero_kitchen.png',
+      beforeImage: '/images/kitchen_before_2.png'
+    },
   ];
 
   const [activeCategory, setActiveCategory] = React.useState('all');

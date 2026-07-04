@@ -27,10 +27,30 @@ export function PortfolioPreview() {
       image: '/images/kitchen_after_2.png',
       beforeImage: '/images/kitchen_before_2.png'
     },
-    { id: '3', title: 'Villa Kitchen Installation', image: '/images/hero_kitchen_3.png' },
-    { id: '4', title: 'Kitchen Color Change', image: '/images/hero_kitchen_4.png' },
-    { id: '5', title: 'Apartment Kitchen Installation', image: '/images/hero_kitchen_5.png' },
-    { id: '6', title: 'Sliding Drawers Maintenance', image: '/images/hero_kitchen.png' },
+    { 
+      id: '3', 
+      title: 'Villa Kitchen Installation', 
+      image: '/images/hero_kitchen_3.png',
+      beforeImage: '/images/kitchen_before_1.png'
+    },
+    { 
+      id: '4', 
+      title: 'Kitchen Color Change', 
+      image: '/images/hero_kitchen_4.png',
+      beforeImage: '/images/kitchen_before_2.png'
+    },
+    { 
+      id: '5', 
+      title: 'Apartment Kitchen Installation', 
+      image: '/images/hero_kitchen_5.png',
+      beforeImage: '/images/kitchen_before_1.png'
+    },
+    { 
+      id: '6', 
+      title: 'Sliding Drawers Maintenance', 
+      image: '/images/hero_kitchen.png',
+      beforeImage: '/images/kitchen_before_2.png'
+    },
   ];
 
   return (
