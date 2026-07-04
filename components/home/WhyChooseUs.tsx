@@ -35,17 +35,40 @@ export function WhyChooseUs() {
         </div>
 
         {/* Central Organic Layout */}
-        <div className="relative max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center min-h-[700px] gap-8 lg:gap-0">
+        <div className="relative max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between min-h-[700px] gap-8 py-12">
           
+          {/* Center Organic Background Image (Absolute) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[60%] lg:w-[80%] lg:h-[90%] z-0 pointer-events-none">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="absolute inset-0 overflow-hidden shadow-2xl" 
+              style={{ borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%' }}
+            >
+              <Image 
+                src="/images/why_choose_us_center.png" 
+                alt="Why Choose Us" 
+                fill 
+                className="object-cover scale-110" 
+              />
+              <div className="absolute inset-0 bg-black/10" />
+            </motion.div>
+          </div>
+
           {/* Left Cards */}
-          <div className="flex flex-col gap-6 lg:gap-12 relative z-10 lg:w-1/3 items-center lg:items-end w-full">
+          <div className="flex flex-col gap-8 lg:gap-16 relative z-10 w-full lg:w-1/2 items-center lg:items-start lg:pl-12">
             {features.slice(0, 3).map((feature, index) => {
               const Icon = iconMap[index]
               const translateClasses = [
-                "lg:ltr:translate-x-12 lg:rtl:-translate-x-12",
-                "lg:ltr:translate-x-24 lg:rtl:-translate-x-24",
-                "lg:ltr:translate-x-12 lg:rtl:-translate-x-12"
+                "lg:translate-x-0",
+                "lg:translate-x-20",
+                "lg:translate-x-8"
               ][index]
+              
+              // Different float timing for organic feel
+              const floatDuration = 4 + index * 0.5;
 
               return (
                 <motion.div
@@ -53,8 +76,13 @@ export function WhyChooseUs() {
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`bg-white rounded-[2rem] p-6 shadow-2xl shadow-black/5 flex flex-col items-center text-center w-full max-w-[260px] transition-transform hover:scale-105 ${translateClasses}`}
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ 
+                    opacity: { duration: 0.5, delay: index * 0.1 },
+                    x: { duration: 0.5, delay: index * 0.1 },
+                    y: { repeat: Infinity, duration: floatDuration, ease: "easeInOut", delay: index * 0.2 }
+                  }}
+                  className={`bg-white/95 backdrop-blur-sm rounded-[2rem] p-6 shadow-2xl shadow-black/10 flex flex-col items-center text-center w-full max-w-[260px] hover:!scale-105 transition-transform ${translateClasses}`}
                 >
                   <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gray-50 border border-gray-100">
                     <Icon className="h-6 w-6 text-red-500" />
@@ -70,34 +98,17 @@ export function WhyChooseUs() {
             })}
           </div>
 
-          {/* Center Organic Image */}
-          <div className="relative w-full max-w-md aspect-[4/3] lg:aspect-square lg:w-1/3 shrink-0 z-0 my-12 lg:my-0 px-4 lg:px-0">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="absolute inset-0 overflow-hidden shadow-2xl" 
-              style={{ borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%' }}
-            >
-              <Image 
-                src="/images/why_choose_us_center.png" 
-                alt="Why Choose Us" 
-                fill 
-                className="object-cover scale-110 hover:scale-125 transition-transform duration-[2000ms]" 
-              />
-            </motion.div>
-          </div>
-
           {/* Right Cards */}
-          <div className="flex flex-col gap-6 lg:gap-12 relative z-10 lg:w-1/3 items-center lg:items-start w-full">
+          <div className="flex flex-col gap-8 lg:gap-16 relative z-10 w-full lg:w-1/2 items-center lg:items-end lg:pr-12">
             {features.slice(3, 6).map((feature, index) => {
               const Icon = iconMap[index + 3]
               const translateClasses = [
-                "lg:ltr:-translate-x-12 lg:rtl:translate-x-12",
-                "lg:ltr:-translate-x-24 lg:rtl:translate-x-24",
-                "lg:ltr:-translate-x-12 lg:rtl:translate-x-12"
+                "lg:-translate-x-0",
+                "lg:-translate-x-20",
+                "lg:-translate-x-8"
               ][index]
+
+              const floatDuration = 4.5 + index * 0.5;
 
               return (
                 <motion.div
@@ -105,8 +116,13 @@ export function WhyChooseUs() {
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`bg-white rounded-[2rem] p-6 shadow-2xl shadow-black/5 flex flex-col items-center text-center w-full max-w-[260px] transition-transform hover:scale-105 ${translateClasses}`}
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ 
+                    opacity: { duration: 0.5, delay: index * 0.1 },
+                    x: { duration: 0.5, delay: index * 0.1 },
+                    y: { repeat: Infinity, duration: floatDuration, ease: "easeInOut", delay: index * 0.3 }
+                  }}
+                  className={`bg-white/95 backdrop-blur-sm rounded-[2rem] p-6 shadow-2xl shadow-black/10 flex flex-col items-center text-center w-full max-w-[260px] hover:!scale-105 transition-transform ${translateClasses}`}
                 >
                   <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gray-50 border border-gray-100">
                     <Icon className="h-6 w-6 text-red-500" />
