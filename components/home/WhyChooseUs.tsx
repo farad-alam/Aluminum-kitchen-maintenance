@@ -31,7 +31,7 @@ export function WhyChooseUs() {
           fill 
           className="object-cover" 
         />
-        <div className="absolute inset-0 bg-[#e6eedf]/70 backdrop-blur-xl" />
+        <div className="absolute inset-0 bg-[#e6eedf]/60 backdrop-blur-sm" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 flex flex-col h-full justify-center max-w-7xl relative z-10">
