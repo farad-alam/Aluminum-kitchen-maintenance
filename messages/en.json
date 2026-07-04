@@ -1,0 +1,106 @@
+{
+  "Index": {
+    "title": "Aluminum Kitchen Maintenance",
+    "description": "Maintenance, installation, and dismantling of aluminum kitchens in Riyadh."
+  },
+  "Navigation": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "areas": "Areas We Serve",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "faq": "FAQ"
+  },
+  "CTA": {
+    "whatsapp": "Contact via WhatsApp",
+    "call": "Call Us Now",
+    "learnMore": "Learn More",
+    "viewAll": "View All Projects"
+  },
+  "Hero": {
+    "title": "Expert Aluminum Kitchen Services in Riyadh",
+    "subtitle": "We provide comprehensive solutions for kitchen dismantling, installation, and maintenance with the highest quality standards.",
+    "badges": {
+      "experience": "10+ Years Exp.",
+      "warranty": "Quality Warranty",
+      "projects": "500+ Projects"
+    }
+  },
+  "ServicesPreview": {
+    "title": "Our Core Services",
+    "subtitle": "Complete solutions for all your kitchen needs",
+    "maintenance": {
+      "title": "Kitchen Maintenance",
+      "desc": "Hinge repair, door replacement, and complete kitchen renovation."
+    },
+    "installation": {
+      "title": "Kitchen Installation",
+      "desc": "Professional installation of new aluminum kitchens with guaranteed quality."
+    },
+    "dismantling": {
+      "title": "Kitchen Dismantling",
+      "desc": "Careful dismantling of kitchens for relocation or renovation without damage."
+    }
+  },
+  "WhyChooseUs": {
+    "title": "Why Choose Us?",
+    "subtitle": "We are committed to providing the best service to our clients in Riyadh",
+    "features": [
+      { "title": "Long Experience", "desc": "Years of professionalism in the aluminum industry." },
+      { "title": "Fast Response", "desc": "We reach you as quickly as possible to provide service." },
+      { "title": "Professional Team", "desc": "Highly trained and experienced technicians." },
+      { "title": "High Quality Materials", "desc": "We use only the best spare parts and materials." },
+      { "title": "Competitive Pricing", "desc": "The best value for your money." },
+      { "title": "Work Warranty", "desc": "We guarantee the quality of our completed work." }
+    ]
+  },
+  "Process": {
+    "title": "How We Work",
+    "subtitle": "Simple steps ensuring the best result for you",
+    "steps": [
+      { "title": "Contact", "desc": "Reach out via WhatsApp or call" },
+      { "title": "Inspection", "desc": "Site visit to identify the issue" },
+      { "title": "Quotation", "desc": "Transparent and fair pricing" },
+      { "title": "Execution", "desc": "Fast and professional work" },
+      { "title": "Completion", "desc": "Delivery of your kitchen like new" }
+    ]
+  },
+  "PortfolioPreview": {
+    "title": "Our Portfolio",
+    "subtitle": "View some of our completed projects in Riyadh"
+  },
+  "AreasWeServe": {
+    "title": "Areas We Serve",
+    "subtitle": "We cover all districts of Riyadh to meet your needs",
+    "districts": [
+      "Al Malaz", "Al Olaya", "Al Yasmin", "Al Nakheel", "Al Murabba", "Al Rawdah", "Al Sulaimaniyah", "Al Aqiq"
+    ]
+  },
+  "Testimonials": {
+    "title": "Client Testimonials",
+    "subtitle": "We pride ourselves on our clients' trust",
+    "reviews": [
+      { "name": "Ahmed Al-Salem", "role": "Villa Owner", "text": "Excellent and fast service in repairing kitchen doors. I highly recommend them." },
+      { "name": "Fahad Al-Dawsari", "role": "Customer", "text": "My kitchen was dismantled and reinstalled with high professionalism and no scratches." },
+      { "name": "Noura Al-Otaibi", "role": "Homeowner", "text": "Very reasonable prices compared to the quality of work and punctuality." }
+    ]
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to your common queries",
+    "questions": [
+      { "q": "Do you provide a warranty on maintenance work?", "a": "Yes, we provide a warranty on all replaced parts and maintenance services." },
+      { "q": "How long does kitchen dismantling and installation take?", "a": "It usually takes 1 to 2 days depending on the kitchen size." },
+      { "q": "Do you serve all districts in Riyadh?", "a": "Yes, we cover all areas and neighborhoods in Riyadh." },
+      { "q": "What is the cost of kitchen maintenance?", "a": "Cost varies based on the issue and required parts. Pricing is provided after inspection." },
+      { "q": "Can you change the color of aluminum doors?", "a": "Yes, we offer renovation services including replacing kitchen facades." },
+      { "q": "Do you work on weekends?", "a": "We operate 6 days a week, closed only on Fridays." }
+    ]
+  },
+  "ContactCTA": {
+    "title": "Ready to renew your kitchen?",
+    "subtitle": "Contact us now for a free consultation and quotation",
+    "hours": "Working Hours: Saturday - Thursday (8 AM - 6 PM)"
+  }
+}
