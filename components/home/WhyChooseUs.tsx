@@ -21,8 +21,20 @@ export function WhyChooseUs() {
   const features = t.raw("features") as { title: string; desc: string }[]
 
   return (
-    <section className="bg-[#e6eedf] overflow-hidden relative flex flex-col justify-center py-16 lg:py-0 lg:h-[100svh] lg:min-h-[700px] lg:max-h-[1000px]">
-      <div className="container mx-auto px-4 md:px-6 flex flex-col h-full justify-center max-w-7xl">
+    <section className="overflow-hidden relative flex flex-col justify-center py-16 lg:py-0 lg:h-[100svh] lg:min-h-[700px] lg:max-h-[1000px]">
+      
+      {/* Full Section Background Image with Glassmorphism Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image 
+          src="/images/why_choose_us_center.png" 
+          alt="Why Choose Us Background" 
+          fill 
+          className="object-cover" 
+        />
+        <div className="absolute inset-0 bg-[#e6eedf]/70 backdrop-blur-xl" />
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 flex flex-col h-full justify-center max-w-7xl relative z-10">
         
         {/* Header split layout */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 lg:gap-8 mb-8 lg:mb-10 w-full relative z-20">
@@ -34,29 +46,9 @@ export function WhyChooseUs() {
           </p>
         </div>
 
-        {/* Central Organic Layout with Grid Overlay */}
+        {/* Central Layout */}
         <div className="relative w-full flex flex-col items-center justify-center flex-1 py-4 lg:py-8 min-h-0">
           
-          {/* Center Organic Background Image (Absolute) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[70%] lg:w-[85%] lg:h-[110%] z-0 pointer-events-none">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="absolute inset-0 overflow-hidden shadow-2xl" 
-              style={{ borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%' }}
-            >
-              <Image 
-                src="/images/why_choose_us_center.png" 
-                alt="Why Choose Us" 
-                fill 
-                className="object-cover scale-110" 
-              />
-              <div className="absolute inset-0 bg-black/10" />
-            </motion.div>
-          </div>
-
           {/* 3-Column Grid for Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 w-full relative z-10 lg:px-8 items-center justify-items-center">
             {features.map((feature, index) => {
