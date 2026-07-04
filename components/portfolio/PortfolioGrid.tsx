@@ -3,12 +3,14 @@
 import * as React from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
+import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider"
 
 type Project = {
   id: string;
   title: string;
   category: string;
   image: string;
+  beforeImage?: string;
 };
 
 export function PortfolioGrid({ locale }: { locale: string }) {
@@ -22,11 +24,23 @@ export function PortfolioGrid({ locale }: { locale: string }) {
   ];
 
   const projects: Project[] = [
-    { id: '1', title: isAr ? 'تجديد مطبخ كامل' : 'Full Kitchen Renovation', category: 'renovation', image: '/images/hero_kitchen.png' },
-    { id: '2', title: isAr ? 'تركيب مطبخ فيلا' : 'Villa Kitchen Installation', category: 'installation', image: '/images/hero_kitchen.png' },
-    { id: '3', title: isAr ? 'صيانة مفصلات وأبواب' : 'Hinges and Doors Repair', category: 'maintenance', image: '/images/hero_kitchen.png' },
-    { id: '4', title: isAr ? 'تغيير ألوان المطبخ' : 'Kitchen Color Change', category: 'renovation', image: '/images/hero_kitchen.png' },
-    { id: '5', title: isAr ? 'تركيب مطبخ شقة' : 'Apartment Kitchen Installation', category: 'installation', image: '/images/hero_kitchen.png' },
+    { 
+      id: '1', 
+      title: isAr ? 'تجديد مطبخ كامل (قبل وبعد)' : 'Full Kitchen Renovation (Before/After)', 
+      category: 'renovation', 
+      image: '/images/kitchen_after_1.png',
+      beforeImage: '/images/kitchen_before_1.png'
+    },
+    { 
+      id: '2', 
+      title: isAr ? 'صيانة مفصلات وأبواب (قبل وبعد)' : 'Hinges and Doors Repair (Before/After)', 
+      category: 'maintenance', 
+      image: '/images/kitchen_after_2.png',
+      beforeImage: '/images/kitchen_before_2.png'
+    },
+    { id: '3', title: isAr ? 'تركيب مطبخ فيلا' : 'Villa Kitchen Installation', category: 'installation', image: '/images/hero_kitchen_3.png' },
+    { id: '4', title: isAr ? 'تغيير ألوان المطبخ' : 'Kitchen Color Change', category: 'renovation', image: '/images/hero_kitchen_4.png' },
+    { id: '5', title: isAr ? 'تركيب مطبخ شقة' : 'Apartment Kitchen Installation', category: 'installation', image: '/images/hero_kitchen_5.png' },
     { id: '6', title: isAr ? 'صيانة أدراج منزلقة' : 'Sliding Drawers Maintenance', category: 'maintenance', image: '/images/hero_kitchen.png' },
   ];
 
@@ -69,14 +83,19 @@ export function PortfolioGrid({ locale }: { locale: string }) {
               transition={{ duration: 0.3 }}
               className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-white shadow-sm"
             >
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90" />
-              <div className="absolute inset-0 flex flex-col justify-end p-6">
+              {project.beforeImage ? (
+                <BeforeAfterSlider beforeImage={project.beforeImage} afterImage={project.image} />
+              ) : (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              )}
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 pointer-events-none transition-opacity duration-300 group-hover:opacity-90" />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 pointer-events-none">
                 <span className="mb-2 inline-block rounded-full bg-(--color-brand-gold) px-3 py-1 text-xs font-bold text-white w-fit">
                   {categories.find(c => c.id === project.category)?.label}
                 </span>
