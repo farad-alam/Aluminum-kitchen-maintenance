@@ -48,7 +48,7 @@ export function HeroSection() {
             ))}
           </div>
         </div>
-        <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] pointer-events-none" />
+        <div className="absolute inset-0 bg-white/30 pointer-events-none" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 md:px-6 pointer-events-none">
