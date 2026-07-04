@@ -63,9 +63,9 @@ export default async function Home({ params }: Props) {
       <main className="flex flex-1 flex-col">
         <HeroSection />
         <ServicesPreview />
+        <PortfolioPreview />
         <WhyChooseUs />
         <ProcessSteps />
-        <PortfolioPreview />
         <AreasWeServe />
         <Testimonials />
         <FAQ />
