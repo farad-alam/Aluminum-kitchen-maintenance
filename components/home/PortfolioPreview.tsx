@@ -7,17 +7,31 @@ import { motion } from "framer-motion"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { Button } from "@/components/ui/Button"
 import { Link } from "@/i18n/routing"
+import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider"
 
 export function PortfolioPreview() {
   const t = useTranslations("PortfolioPreview")
   const tCTA = useTranslations("CTA")
 
-  // Placeholder projects using the hero image
-  const projects = Array.from({ length: 6 }).map((_, i) => ({
-    id: i + 1,
-    title: `Project ${i + 1}`,
-    image: "/images/hero_kitchen.png"
-  }))
+  // Shared project data with before/after capabilities
+  const projects = [
+    { 
+      id: '1', 
+      title: 'Full Kitchen Renovation',
+      image: '/images/kitchen_after_1.png',
+      beforeImage: '/images/kitchen_before_1.png'
+    },
+    { 
+      id: '2', 
+      title: 'Hinges and Doors Repair',
+      image: '/images/kitchen_after_2.png',
+      beforeImage: '/images/kitchen_before_2.png'
+    },
+    { id: '3', title: 'Villa Kitchen Installation', image: '/images/hero_kitchen_3.png' },
+    { id: '4', title: 'Kitchen Color Change', image: '/images/hero_kitchen_4.png' },
+    { id: '5', title: 'Apartment Kitchen Installation', image: '/images/hero_kitchen_5.png' },
+    { id: '6', title: 'Sliding Drawers Maintenance', image: '/images/hero_kitchen.png' },
+  ];
 
   return (
     <section className="bg-(--color-brand-surface) py-24">
@@ -39,18 +53,24 @@ export function PortfolioPreview() {
               className="group relative overflow-hidden rounded-2xl bg-white shadow-sm"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <Button variant="default" className="scale-90 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
-                    {tCTA("viewAll")}
-                  </Button>
-                </div>
+                {project.beforeImage ? (
+                  <BeforeAfterSlider beforeImage={project.beforeImage} afterImage={project.image} />
+                ) : (
+                  <>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+                      <Button variant="default" className="scale-90 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 pointer-events-auto">
+                        {tCTA("viewAll")}
+                      </Button>
+                    </div>
+                  </>
+                )}
               </div>
             </motion.div>
           ))}
