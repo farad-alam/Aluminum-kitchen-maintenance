@@ -28,13 +28,13 @@ export function ContactCTA() {
           <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
             <Button size="lg" variant="whatsapp" className="w-full sm:w-auto text-lg px-10 h-16 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <MessageCircle className="mr-2 h-6 w-6 rtl:ml-2 rtl:mr-0" />
-              تواصل عبر واتساب
+              {tCTA("whatsappBtn")}
             </Button>
           </a>
           <a href={phoneUrl}>
             <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-10 h-16 rounded-full border-2 border-white text-white hover:bg-white hover:text-(--color-brand-navy) shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <PhoneCall className="mr-2 h-6 w-6 rtl:ml-2 rtl:mr-0" />
-              اتصل بنا الآن
+              {tCTA("callBtn")}
             </Button>
           </a>
         </div>

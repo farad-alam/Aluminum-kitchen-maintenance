@@ -102,6 +102,8 @@
   "ContactCTA": {
     "title": "Ready to renew your kitchen?",
     "subtitle": "Contact us now for a free consultation and quotation",
-    "hours": "Working Hours: Saturday - Thursday (8 AM - 6 PM)"
+    "hours": "Working Hours: Saturday - Thursday (8 AM - 6 PM)",
+    "whatsappBtn": "Contact via WhatsApp",
+    "callBtn": "Call us now"
   }
 }
