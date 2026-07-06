@@ -56,14 +56,15 @@
     ]
   },
   "Process": {
-    "title": "How We Work",
-    "subtitle": "Simple steps ensuring the best result for you",
+    "subtitle": "ALUMINUM KITCHEN MAINTENANCE ACROSS RIYADH",
+    "title": "We have the best team and best process",
+    "desc": "We ensure a smooth and professional experience from your first contact until the final delivery of your kitchen. Our simple process guarantees quality and satisfaction.",
+    "button": "Get Started",
     "steps": [
-      { "title": "Contact", "desc": "Reach out via WhatsApp or call" },
-      { "title": "Inspection", "desc": "Site visit to identify the issue" },
-      { "title": "Quotation", "desc": "Transparent and fair pricing" },
-      { "title": "Execution", "desc": "Fast and professional work" },
-      { "title": "Completion", "desc": "Delivery of your kitchen like new" }
+      { "title": "Contact & Inspection", "desc": "Reach out via WhatsApp or call. We will visit the site to identify the issue." },
+      { "title": "Transparent Quotation", "desc": "We provide a transparent and fair pricing proposal for the required maintenance." },
+      { "title": "Professional Execution", "desc": "Our professional team starts the maintenance or installation work with high efficiency." },
+      { "title": "Delivery & Guarantee", "desc": "Delivery of your kitchen like new with a guarantee on our work." }
     ]
   },
   "PortfolioPreview": {
@@ -87,7 +88,7 @@
     ]
   },
   "FAQ": {
-    "title": "Frequently Asked Questions",
+    "title": "Common Questions",
     "subtitle": "Answers to your common queries",
     "questions": [
       { "q": "Do you provide a warranty on maintenance work?", "a": "Yes, we provide a warranty on all replaced parts and maintenance services." },

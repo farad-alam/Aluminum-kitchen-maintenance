@@ -1,66 +1,168 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { useTranslations } from "next-intl"
 import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from "embla-carousel-autoplay"
-import { Star, Quote } from "lucide-react"
-import { SectionHeading } from "@/components/ui/SectionHeading"
+import { Quote, ChevronLeft, ChevronRight } from "lucide-react"
 
 export function Testimonials() {
   const t = useTranslations("Testimonials")
   const reviews = t.raw("reviews") as { name: string; role: string; text: string }[]
 
-  const [emblaRef] = useEmblaCarousel(
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
       align: "center",
-      direction: "rtl" // Embla handles RTL if specified or detected
+      direction: "rtl" // Next-intl standardizes RTL layout nicely
     },
     [Autoplay({ delay: 5000, stopOnInteraction: true })]
   )
 
-  return (
-    <section className="bg-(--color-brand-surface) py-24">
-      <div className="container mx-auto px-4 md:px-6">
-        <SectionHeading 
-          title={t("title")} 
-          subtitle={t("subtitle")}
-          className="mb-16"
-        />
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
 
-        <div className="mx-auto max-w-5xl overflow-hidden" ref={emblaRef} dir="rtl">
-          <div className="flex -ml-4 rtl:-ml-0 rtl:-mr-4">
-            {reviews.map((review, index) => (
-              <div 
-                key={index} 
-                className="min-w-0 flex-[0_0_100%] pl-4 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] rtl:pl-0 rtl:pr-4"
-              >
-                <div className="flex h-full flex-col justify-between rounded-2xl bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
-                  <div>
-                    <Quote className="mb-4 h-8 w-8 text-(--color-brand-gold-pale)" fill="currentColor" />
-                    <div className="mb-6 flex gap-1 text-(--color-brand-gold)">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-current" />
-                      ))}
+  const scrollPrev = React.useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
+  const scrollNext = React.useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
+  const scrollTo = React.useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi])
+
+  const onInit = React.useCallback((emblaApi: any) => {
+    setScrollSnaps(emblaApi.scrollSnapList())
+  }, [])
+
+  const onSelect = React.useCallback((emblaApi: any) => {
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [])
+
+  React.useEffect(() => {
+    if (!emblaApi) return
+
+    onInit(emblaApi)
+    onSelect(emblaApi)
+    emblaApi.on("reInit", onInit)
+    emblaApi.on("reInit", onSelect)
+    emblaApi.on("select", onSelect)
+  }, [emblaApi, onInit, onSelect])
+
+  // To simulate the 3D effect across exactly 3 items, we can duplicate them to create a continuous loop effect, 
+  // but Embla handles `loop: true` natively.
+  const displayReviews = [...reviews, ...reviews] // Duplicate to ensure enough slides for center focus if there are only 3
+
+  return (
+    <section className="relative py-28 overflow-hidden bg-white">
+      {/* Beautiful Sunburst Background Image */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <Image 
+          src="/images/testimonials-bg.png" 
+          alt="Background Texture" 
+          fill 
+          className="object-cover"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+      </div>
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/80 via-transparent to-white/90" />
+
+      <div className="container relative z-10 mx-auto px-4 md:px-6">
+        
+        {/* Minimalist Heading */}
+        <div className="flex items-center justify-center gap-4 mb-16">
+          <div className="h-[1px] w-8 md:w-16 bg-gray-200"></div>
+          <span className="text-[11px] md:text-xs font-bold tracking-[0.2em] text-gray-500 uppercase">
+            They Use Our Service
+          </span>
+          <div className="h-[1px] w-8 md:w-16 bg-gray-200"></div>
+        </div>
+
+        {/* Carousel Container */}
+        <div className="mx-auto max-w-6xl" dir="rtl">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex -ml-4 rtl:-ml-0 rtl:-mr-4 py-8">
+              {displayReviews.map((review, index) => {
+                // The actual active slide must exactly match the Embla selected index (0-5)
+                const isActive = selectedIndex === index;
+
+                return (
+                  <div 
+                    key={index} 
+                    className="min-w-0 flex-[0_0_90%] md:flex-[0_0_50%] lg:flex-[0_0_40%] pl-4 rtl:pl-0 rtl:pr-4"
+                  >
+                    <div 
+                      className={`h-full transition-all duration-500 ease-out ${
+                        isActive 
+                          ? "scale-100 opacity-100 z-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] relative" 
+                          : "scale-[0.92] opacity-50 z-0 shadow-md pointer-events-none"
+                      }`}
+                    >
+                      {/* The Card */}
+                      <div className="flex h-full flex-col justify-between rounded-xl bg-white overflow-hidden border border-gray-50">
+                        {/* Top Review Section */}
+                        <div className="p-8 md:p-10 pb-12">
+                          <Quote className="mb-6 h-12 w-12 text-[#98b8f5] rotate-180 opacity-80" fill="currentColor" strokeWidth={0} />
+                          <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
+                            "{review.text}"
+                          </p>
+                        </div>
+                        
+                        {/* Bottom Author Section */}
+                        <div className="flex items-center gap-4 bg-[#f8f9fc] border-t border-gray-100 p-6 md:p-8">
+                          <div className="relative flex h-14 w-14 items-center justify-center rounded-full overflow-hidden bg-gradient-to-br from-[#98b8f5] to-[#719df0] shadow-sm">
+                            {/* Avatar Fallback initials */}
+                            <span className="font-bold text-white text-lg">
+                              {review.name.charAt(0)}
+                            </span>
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="font-bold text-gray-900 text-base">{review.name}</span>
+                            <span className="text-sm font-semibold text-[#719df0] mt-0.5">{review.role}</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-(--color-brand-muted) text-lg leading-relaxed italic mb-8">
-                      "{review.text}"
-                    </p>
                   </div>
-                  <div className="flex items-center gap-4 border-t border-(--color-brand-border) pt-6">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-(--color-brand-navy) text-white font-bold text-lg">
-                      {review.name.charAt(0)}
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="font-bold text-(--color-brand-navy)">{review.name}</span>
-                      <span className="text-sm text-(--color-brand-muted)">{review.role}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+                )
+              })}
+            </div>
           </div>
+
+          {/* Carousel Controls */}
+          <div className="flex items-center justify-center gap-6 mt-8">
+            <button 
+              onClick={scrollPrev} 
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm border border-gray-100 text-[#719df0] hover:text-[#5284eb] hover:bg-gray-50 hover:shadow-md transition-all z-10"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="h-5 w-5 rtl:hidden" />
+              <ChevronRight className="h-5 w-5 hidden rtl:block" />
+            </button>
+
+            <div className="flex items-center gap-3">
+              {reviews.map((_, originalIndex) => (
+                <button 
+                  key={originalIndex} 
+                  onClick={() => scrollTo(originalIndex)}
+                  aria-label={`Go to slide ${originalIndex + 1}`}
+                  className={`rounded-full transition-all duration-300 ${
+                    (selectedIndex % reviews.length) === originalIndex 
+                      ? 'w-3.5 h-3.5 bg-[#719df0] shadow-sm ring-4 ring-[#719df0]/20' 
+                      : 'w-2 h-2 bg-gray-200 hover:bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button 
+              onClick={scrollNext} 
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm border border-gray-100 text-[#719df0] hover:text-[#5284eb] hover:bg-gray-50 hover:shadow-md transition-all z-10"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="h-5 w-5 rtl:hidden" />
+              <ChevronLeft className="h-5 w-5 hidden rtl:block" />
+            </button>
+          </div>
+          
         </div>
       </div>
     </section>
