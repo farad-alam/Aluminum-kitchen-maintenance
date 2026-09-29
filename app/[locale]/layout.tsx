@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Cairo } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -56,6 +57,24 @@ export default async function RootLayout({
           <Footer />
           <FloatingCTA />
         </NextIntlClientProvider>
+
+        {/* Google Ads conversion: WhatsApp + phone clicks */}
+        <Script id="gads-conversion-tracking" strategy="afterInteractive">
+          {`
+            document.addEventListener('DOMContentLoaded', function () {
+              var links = document.querySelectorAll(
+                'a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href^="tel:"]'
+              );
+              links.forEach(function (a) {
+                a.addEventListener('click', function () {
+                  gtag('event', 'conversion', {
+                    'send_to': 'AW-18430894932/nxW2CJKT3IkdENTGxNRE'
+                  });
+                });
+              });
+            });
+          `}
+        </Script>
       </body>
     </html>
   );
